@@ -1,12 +1,10 @@
 <?php
 // namespace Haluz;
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 use Haluz\Processor;
 use Haluz\ArrayDataSource;
-
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/Processor.php';
-require_once __DIR__ . '/ArrayDataSource.php';
 
 $cwd = getcwd();
 $templates = $argv[1];

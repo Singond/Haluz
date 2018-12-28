@@ -1,8 +1,6 @@
 <?php
 namespace Haluz;
 
-require_once __DIR__ . '/DataEntry.php';
-
 class ArrayDataEntry implements DataEntry {
 	
 	private $data;

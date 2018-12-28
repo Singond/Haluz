@@ -1,9 +1,6 @@
 <?php
 namespace Haluz;
 
-require_once __DIR__ . '/ArrayDataEntry.php';
-require_once __DIR__ . '/DataSource.php';
-
 class ArrayDataSource implements DataSource {
 
 	private $data = array();
