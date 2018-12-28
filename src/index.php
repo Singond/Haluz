@@ -25,7 +25,7 @@ $processor->setTemplateName($templateName);
 $arr = array();
 $arr[] = array('name' => 'Aaa', 'number' => 34);
 $arr[] = array('name' => 'Bbb', 'number' => 8);
-$arr[] = array('name' => 'Ccc', 'number' => 65);
+$arr[] = array('name' => 'Ccc', 'number' => array(65, 74, 8));
 $source = new ArrayDataSource($arr);
 $processor->setDataSource($source);
 $processor->run();
