@@ -21,7 +21,12 @@ $loader = new \Twig_Loader_Filesystem($templateDir);
 $processor = new Processor();
 $processor->setLoader($loader);
 $processor->setTemplateName($templateName);
-$source = new ArrayDataSource();
+
+$arr = array();
+$arr[] = array('name' => 'Aaa', 'number' => 34);
+$arr[] = array('name' => 'Bbb', 'number' => 8);
+$arr[] = array('name' => 'Ccc', 'number' => 65);
+$source = new ArrayDataSource($arr);
 $processor->setDataSource($source);
 $processor->run();
 ?>
