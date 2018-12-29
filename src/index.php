@@ -3,11 +3,13 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Haluz\Processor;
 use Haluz\ArrayDataSource;
+use Haluz\FileOutput;
+use Haluz\Processor;
 
 $cwd = getcwd();
 $templates = $argv[1];
+$output = $argv[2];
 $templateDir = dirname($templates);
 $templateName = basename($templates);
 
@@ -28,5 +30,6 @@ $arr[] = array('name' => 'Bbb', 'number' => 8);
 $arr[] = array('name' => 'Ccc', 'number' => array(65, 74, 8));
 $source = new ArrayDataSource($arr);
 $processor->setDataSource($source);
+$processor->setOutput(new FileOutput($output));
 $processor->run();
 ?>

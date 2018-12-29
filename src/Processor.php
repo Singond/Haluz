@@ -4,10 +4,11 @@ namespace Haluz;
 use \Twig_Environment;
 
 class Processor {
-	
+
 	private $loader;
 	private $templateName;
 	private $source;
+	private $output;
 
 	/**
 	 * @param \Twig_LoaderInterface $loader
@@ -30,11 +31,19 @@ class Processor {
 		$this->source = $source;
 	}
 
+	/**
+	 * @param \Haluz\Output $output the output consumer
+	 */
+	public function setOutput(Output $output) {
+		$this->output = $output;
+	}
+
 	public function run() {
 		$twig = new Twig_Environment($this->loader);
 		$template = $twig->load($this->templateName);
 		foreach ($this->source as $data) {
-			echo $template->render($data->asArray()) . PHP_EOL;
+			$dataArray = $data->asArray();
+			$this->output->consume($template->render($dataArray), $dataArray);
 		}
 	}
 }
