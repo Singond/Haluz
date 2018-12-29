@@ -7,9 +7,18 @@ use Haluz\ArrayDataSource;
 use Haluz\FileOutput;
 use Haluz\Processor;
 
+global $argv;
+
+$g = new Console_Getopt();
+$o = $g->getopt($argv, "");
+$opts = $o[0];
+$args = $o[1];
+var_dump($opts);
+var_dump($args);
+
 $cwd = getcwd();
-$templates = $argv[1];
-$output = $argv[2];
+$output = array_pop($args);
+$templates = $args[0];
 $templateDir = dirname($templates);
 $templateName = basename($templates);
 
