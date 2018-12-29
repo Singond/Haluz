@@ -1,11 +1,10 @@
 <?php
-// namespace Haluz;
+namespace Haluz;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Haluz\ArrayDataSource;
-use Haluz\FileOutput;
-use Haluz\Processor;
+use \Console_Getopt;
+use \Twig_Loader_Filesystem;
 
 global $argv;
 
@@ -28,7 +27,7 @@ echo "Templates directory: $templateDir" . PHP_EOL;
 echo "Template filename: $templateName" . PHP_EOL;
 echo PHP_EOL;
 
-$loader = new \Twig_Loader_Filesystem($templateDir);
+$loader = new Twig_Loader_Filesystem($templateDir);
 $processor = new Processor();
 $processor->setLoader($loader);
 $processor->setTemplateName($templateName);
