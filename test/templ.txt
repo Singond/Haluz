@@ -1,1 +1,1 @@
-Hello {{ name }}! Your numbers are {{ number|join(", ") }}.
+This is {{name}}. It's height is {{height}} metres.
