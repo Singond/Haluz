@@ -1,13 +1,18 @@
 <?php
 namespace Haluz;
+
+use \ArrayIterator;
+use \IteratorAggregate;
+use \Traversable;
+
 /**
  * A data source where each data entry is represented by an array.
  * The whole data source itself is an array of these entries.
  */
-class ArrayDataSource implements DataSource {
+class ArrayDataSource implements IteratorAggregate, DataSource {
 
 	private $data = array();
-	
+
 	/**
 	 * Creates a new instance with the given array of arrays as the data.
 	 *
@@ -20,8 +25,8 @@ class ArrayDataSource implements DataSource {
 		}
 	}
 
-	public function getIterator():\Traversable {
-		return new \ArrayIterator($this->data);
+	public function getIterator():Traversable {
+		return new ArrayIterator($this->data);
 	}
 }
 ?>
