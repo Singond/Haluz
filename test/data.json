@@ -1,0 +1,50 @@
+{
+	"name": "Cygnus",
+	"abbreviation": "Cyg",
+	"meaning": "swan",
+	"hemisphere": "northern",
+	"stars": [
+		{
+			"bayer": "alpha",
+			"name": "Deneb",
+			"magnitude": 1.25,
+			"represents": "tail",
+			"note": ""
+		},
+		{
+			"bayer": "beta",
+			"name": "Albireo",
+			"magnitude": 3.05,
+			"represents": "head",
+			"note": "double"
+		},
+		{
+			"bayer": "gamma",
+			"name": "Sadr",
+			"magnitude": 2.23,
+			"represents": "body",
+			"note": ""
+		},
+		{
+			"bayer": "delta",
+			"name": "Fawaris",
+			"magnitude": 2.86,
+			"represents": "wing",
+			"note": "binary"
+		},
+		{
+			"bayer": "epsilon",
+			"name": "Aljanah",
+			"magnitude": 2.48,
+			"represents": "wing",
+			"note": "multiple"
+		},
+		{
+			"bayer": "eta",
+			"name": "",
+			"magnitude": 3.89,
+			"represents": "neck",
+			"note": "multiple"
+		}
+	]
+}
