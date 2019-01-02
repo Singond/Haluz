@@ -11,7 +11,6 @@ global $argv;
 $shortopts = "";
 $longopts = array("json=");
 $parsed = (new Console_Getopt())->getopt($argv, $shortopts, $longopts);
-// $opts = $parsed[0];
 $opts = array();
 foreach ($parsed[0] as $item) {
 	$opts[$item[0]] = $item[1];
