@@ -1,4 +1,5 @@
 /.settings/
+/build/
 /test/
 /vendor/
 
