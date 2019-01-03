@@ -1,9 +1,9 @@
 <?php
 $basedir = __DIR__;
-$builddir = $basedir . DIRECTORY_SEPARATOR . 'build';
 $archivename = 'haluz.phar';
 
 $phar = new Phar($archivename);
+$phar->setAlias($archivename);
 $phar->setSignatureAlgorithm(Phar::SHA1);
 $phar->startBuffering();
 $phar->setStub(file_get_contents($basedir . DIRECTORY_SEPARATOR . 'stub.php'));
