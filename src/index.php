@@ -1,7 +1,15 @@
 <?php
 namespace Haluz;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$path = dirname(\Phar::running(false));
+if (strlen($path) > 0) {
+// 	define('BASEDIR', \Phar::running());
+	require_once \Phar::running() . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+} else {
+	// Running from source
+	require_once __DIR__ . '/../vendor/autoload.php';
+}
+
 
 use \Console_Getopt;
 use \Twig_Loader_Filesystem;
