@@ -10,7 +10,6 @@ if (strlen($path) > 0) {
 	require_once __DIR__ . '/../vendor/autoload.php';
 }
 
-
 use \Console_Getopt;
 use \Twig_Loader_Filesystem;
 
