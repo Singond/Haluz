@@ -5,8 +5,9 @@ echo "Running on PHP version: " . PHP_VERSION . PHP_EOL;
 
 $path = dirname(\Phar::running(false));
 if (strlen($path) > 0) {
-// 	define('BASEDIR', \Phar::running());
-	require_once \Phar::running() . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+	// Running from PHAR
+	require_once \Phar::running() . DIRECTORY_SEPARATOR . 'vendor'
+		. DIRECTORY_SEPARATOR . 'autoload.php';
 } else {
 	// Running from source
 	require_once __DIR__ . '/../vendor/autoload.php';
