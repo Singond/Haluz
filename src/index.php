@@ -1,6 +1,8 @@
 <?php
 namespace Haluz;
 
+echo "Running on PHP version: " . PHP_VERSION . PHP_EOL;
+
 $path = dirname(\Phar::running(false));
 if (strlen($path) > 0) {
 // 	define('BASEDIR', \Phar::running());
