@@ -44,7 +44,7 @@ class MainCommand extends Command {
 
 		if ($in->hasOption('json')) {
 			$processor->setDataSource(
-				new JsonFileDataSourceSingle($in->getOption('json')));
+				new JsonFileDataSource($in->getOption('json')));
 		}
 
 		if (!empty($output)) {

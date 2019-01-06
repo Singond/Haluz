@@ -3,7 +3,7 @@ namespace Haluz;
 
 use Symfony\Component\Console\Logger\ConsoleLogger;
 
-class JsonFileDataSourceSingle extends SingleEntryDataSource {
+class JsonFileDataSource extends SingleEntryDataSource {
 
 	private $dataEntry;
 	private $logger;
@@ -13,7 +13,7 @@ class JsonFileDataSourceSingle extends SingleEntryDataSource {
 		$data = json_decode($contents, true);
 		$this->dataEntry = new ArrayDataEntry($data);
 		$this->logger = Log::getLogger();
-		$this->logger->debug($this->dataEntry);
+		$this->logger->debug("Parsed JSON data: $this->dataEntry");
 	}
 
 	public function entry(): DataEntry {
