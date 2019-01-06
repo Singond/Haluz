@@ -29,8 +29,8 @@ class MainCommand extends Command {
 	}
 
 	protected function execute(InputInterface $in, OutputInterface $out) {
-		$logger = new ConsoleLogger($out, LogUtil::verbosityMap());
-		$context = new Context($this, $logger);
+		Log::newLogger($out);
+		$logger = Log::getLogger();
 
 		$template = $in->getArgument('template');
 		$templateDir = dirname($template);
@@ -47,7 +47,7 @@ class MainCommand extends Command {
 
 		if ($in->hasOption('json')) {
 			$processor->setDataSource(
-				new JsonFileDataSourceSingle($in->getOption('json'), $context));
+				new JsonFileDataSourceSingle($in->getOption('json')));
 		}
 
 		if (!empty($output)) {

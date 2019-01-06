@@ -2,9 +2,13 @@
 namespace Haluz;
 
 use Psr\Log\LogLevel;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class LogUtil {
+class Log {
+
+	private static $loggers = array();
+	private const DEFAULT_NAME = 'DEFAULT_HALUZ_LOGGER';
 
 	/*
 	 * The Symfony verbosity levels are the following:
@@ -15,7 +19,7 @@ class LogUtil {
 	 * const VERBOSITY_DEBUG = 256;
 	 */
 
-	private static $verbosityLevelMap = array(
+	private static $verbosityMap = array(
 		LogLevel::EMERGENCY => OutputInterface::VERBOSITY_NORMAL,
 		LogLevel::ALERT     => OutputInterface::VERBOSITY_NORMAL,
 		LogLevel::CRITICAL  => OutputInterface::VERBOSITY_NORMAL,
@@ -26,8 +30,17 @@ class LogUtil {
 		LogLevel::DEBUG     => OutputInterface::VERBOSITY_DEBUG
 	);
 
+	public static function getLogger(string $name = self::DEFAULT_NAME) {
+		return self::$loggers[$name];
+	}
+
+	public static function newLogger(
+		OutputInterface $output, string $name = self::DEFAULT_NAME) {
+		self::$loggers[$name] = new ConsoleLogger($output, self::$verbosityMap);
+	}
+
 	public static function verbosityMap() {
-		return self::$verbosityLevelMap;
+		return self::$verbosityMap;
 	}
 }
 ?>

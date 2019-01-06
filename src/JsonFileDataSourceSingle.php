@@ -8,11 +8,11 @@ class JsonFileDataSourceSingle extends SingleEntryDataSource {
 	private $dataEntry;
 	private $logger;
 
-	public function __construct(string $filename, Context $ctx) {
+	public function __construct(string $filename) {
 		$contents = file_get_contents($filename);
 		$data = json_decode($contents, true);
 		$this->dataEntry = new ArrayDataEntry($data);
-		$this->logger = $ctx->getLogger();
+		$this->logger = Log::getLogger();
 		$this->logger->debug($this->dataEntry);
 	}
 
