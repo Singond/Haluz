@@ -24,6 +24,8 @@ class MainCommand extends Command {
 			"Name of the output file (can be a pattern)");
 
 		// Input formats
+		// NOTE: Beware that the string '0' is cast to false, so data files
+		// with this name will not work.
 		$this->addOption('json', null, InputOption::VALUE_REQUIRED,
 			"File with data to be filled, in JSON format");
 		$this->addOption('csv', null, InputOption::VALUE_REQUIRED,
