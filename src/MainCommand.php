@@ -20,7 +20,7 @@ class MainCommand extends Command {
 		$this->setDescription(Application::DESC);
 		$this->addArgument('template', InputArgument::REQUIRED,
 			"The Twig template to be processed");
-		$this->addArgument('output', InputArgument::REQUIRED,
+		$this->addArgument('output', InputArgument::OPTIONAL,
 			"Name of the output file (can be a pattern)");
 		$this->addOption('json', null, InputOption::VALUE_REQUIRED,
 			"File with data to be filled, in JSON format");
@@ -44,7 +44,7 @@ class MainCommand extends Command {
 		if (!empty($output)) {
 			$processor->setOutput(new FileOutput($output));
 		} else {
-			throw new \Exception("No output specified");
+			$processor->setOutput(new ConsoleOutput());
 		}
 		$processor->run();
 		return 0;
