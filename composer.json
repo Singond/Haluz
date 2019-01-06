@@ -1,7 +1,8 @@
 {
 	"require": {
 		"twig/twig": "~2.0",
-		"pear/console_getopt": "1.4.1"
+		"pear/console_getopt": "1.4.1",
+		"symfony/console": "4.2.1"
 	},
 	"autoload": {
 		"psr-4": {
