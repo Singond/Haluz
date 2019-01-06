@@ -22,8 +22,12 @@ class MainCommand extends Command {
 			"The Twig template to be processed");
 		$this->addArgument('output', InputArgument::OPTIONAL,
 			"Name of the output file (can be a pattern)");
+
+		// Input formats
 		$this->addOption('json', null, InputOption::VALUE_REQUIRED,
 			"File with data to be filled, in JSON format");
+		$this->addOption('csv', null, InputOption::VALUE_REQUIRED,
+			"File with data to be filled, in CSV format");
 	}
 
 	protected function execute(InputInterface $in, OutputInterface $out) {
@@ -42,9 +46,11 @@ class MainCommand extends Command {
 		$processor->setLoader($loader);
 		$processor->setTemplateName($templateName);
 
-		if ($in->hasOption('json')) {
-			$processor->setDataSource(
-				new JsonFileDataSource($in->getOption('json')));
+		if ($file = $in->getOption('json')) {
+			$processor->setDataSource(new JsonFileDataSource($file));
+		}
+		if ($file = $in->getOption('csv')) {
+			$processor->setDataSource(new CsvFileDataSource($file));
 		}
 
 		if (!empty($output)) {
