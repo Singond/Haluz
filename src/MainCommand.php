@@ -6,6 +6,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Logger\ConsoleLogger;
+
 use Twig_Loader_Filesystem;
 
 /**
@@ -27,18 +29,25 @@ class MainCommand extends Command {
 	}
 
 	protected function execute(InputInterface $in, OutputInterface $out) {
+		$logger = new ConsoleLogger($out, LogUtil::verbosityMap());
+		$context = new Context($this, $logger);
+
 		$template = $in->getArgument('template');
 		$templateDir = dirname($template);
 		$templateName = basename($template);
 		$output = $in->getArgument('output');
+		$logger->debug("Using template $templateName in $templateDir");
+		$logger->debug("The output file name pattern is $output");
 
 		$loader = new Twig_Loader_Filesystem($templateDir);
 		$processor = new Processor();
 		$processor->setLoader($loader);
 		$processor->setTemplateName($templateName);
 
+
 		if ($in->hasOption('json')) {
-			$processor->setDataSource(new JsonFileDataSourceSingle($in->getOption('json')));
+			$processor->setDataSource(
+				new JsonFileDataSourceSingle($in->getOption('json'), $context));
 		}
 
 		if (!empty($output)) {
