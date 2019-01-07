@@ -43,7 +43,7 @@ class Processor {
 		$template = $twig->load($this->templateName);
 		$i = 1;
 		$this->source->open();
-		foreach ($this->source as $data) {
+		foreach ($this->source->data() as $data) {
 			$dataArray = $data->asArray();
 			$dataArray['_i'] = $i++;
 			$this->output->consume($template->render($dataArray), $dataArray);

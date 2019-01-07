@@ -2,14 +2,12 @@
 namespace Haluz;
 
 use \ArrayIterator;
-use \IteratorAggregate;
-use \Traversable;
 
 /**
  * A data source where each data entry is represented by an array.
  * The whole data source itself is an array of these entries.
  */
-class ArrayDataSource implements IteratorAggregate, DataSource {
+class ArrayDataSource implements DataSource {
 
 	private $data = array();
 
@@ -25,7 +23,7 @@ class ArrayDataSource implements IteratorAggregate, DataSource {
 		}
 	}
 
-	public function getIterator():Traversable {
+	public function data(): iterable {
 		return new ArrayIterator($this->data);
 	}
 

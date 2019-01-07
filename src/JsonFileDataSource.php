@@ -1,9 +1,7 @@
 <?php
 namespace Haluz;
 
-use Symfony\Component\Console\Logger\ConsoleLogger;
-
-class JsonFileDataSource extends SingleEntryDataSource {
+class JsonFileDataSource extends AbstractDataSource {
 
 	// TODO: Not implementing open() and close() is lying about the nature
 	// of this class. FileDataSource is appropriate here.
@@ -18,12 +16,9 @@ class JsonFileDataSource extends SingleEntryDataSource {
 		$this->logger->debug("Parsed JSON data: $this->dataEntry");
 	}
 
-	public function entry(): DataEntry {
-		return $this->dataEntry;
+	public function data(): iterable {
+		yield $this->dataEntry;
 	}
 
-	public function setLogger($logger): ConsoleLogger {
-		$this->logger = $logger;
-	}
 }
 ?>

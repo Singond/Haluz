@@ -1,7 +1,7 @@
 <?php
 namespace Haluz;
 
-class CsvFileDataSource extends SingleEntryDataSource {
+class CsvFileDataSource extends AbstractDataSource {
 	use FileDataSource;
 
 	private $dataEntry;
@@ -11,7 +11,7 @@ class CsvFileDataSource extends SingleEntryDataSource {
 		$this->filename = $filename;
 	}
 
-	public function entry(): DataEntry {
+	public function data(): iterable {
 		if ($this->dataEntry) {
 			return $this->dataEntry;
 		} else {
@@ -24,7 +24,7 @@ class CsvFileDataSource extends SingleEntryDataSource {
 			}
 			$this->dataEntry = new ArrayDataEntry($data);
 			$this->logger->debug("Parsed CSV data: $this->dataEntry");
-			return $this->dataEntry;
+			yield $this->dataEntry;
 		}
 	}
 

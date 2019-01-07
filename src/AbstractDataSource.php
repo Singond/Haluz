@@ -1,14 +1,12 @@
 <?php
 namespace Haluz;
 
-use Iterator;
-
 /**
  * A data source which does not need to call open() or close().
  *
  * @author Singon
  */
-abstract class AbstractDataSource implements Iterator, DataSource {
+abstract class AbstractDataSource implements DataSource {
 
 	protected $logger;
 
