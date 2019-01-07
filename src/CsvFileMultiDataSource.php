@@ -10,15 +10,15 @@ class CsvFileMultiDataSource extends AbstractDataSource {
 	public function __construct(string $filename) {
 		parent::__construct();
 		$this->filename = $filename;
-// 		$csv = $this->parse($filename, ",");
-// 		$header = $csv[0];
-// 		$values = $csv[1];
-// 		$data = array();
-// 		for ($i = 0; $i < count($header); $i++) {
-// 			$data[$header[$i]] = $values[$i];
-// 		}
-// 		$this->dataEntry = new ArrayDataEntry($data);
-// 		$this->logger->debug("Parsed CSV data: $this->dataEntry");
+	}
+
+	/**
+	 * Sets the separator to be used for parsing the CSV data.
+	 *
+	 * @param string $separator
+	 */
+	public function setSeparator($separator) {
+		$this->separator = $separator;
 	}
 
 	private function nextLine() {
