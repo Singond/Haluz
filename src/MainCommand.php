@@ -30,6 +30,9 @@ class MainCommand extends Command {
 			"File with data to be filled, in JSON format");
 		$this->addOption('csv', null, InputOption::VALUE_REQUIRED,
 			"File with data to be filled, in CSV format");
+
+		$this->addOption('multiple', 'm', InputOption::VALUE_NONE,
+			"Treat input as multiple data entries");
 	}
 
 	protected function execute(InputInterface $in, OutputInterface $out) {
@@ -48,11 +51,15 @@ class MainCommand extends Command {
 		$processor->setLoader($loader);
 		$processor->setTemplateName($templateName);
 
+		$multiple = $in->getOption('multiple');
 		if ($file = $in->getOption('json')) {
 			$processor->setDataSource(new JsonFileDataSource($file));
 		}
 		if ($file = $in->getOption('csv')) {
-			$processor->setDataSource(new CsvFileDataSource($file));
+			if ($multiple)
+				$processor->setDataSource(new CsvFileMultiDataSource($file));
+			else
+				$processor->setDataSource(new CsvFileDataSource($file));
 		}
 
 		if (!empty($output)) {
