@@ -42,11 +42,13 @@ class Processor {
 		$twig = new Twig_Environment($this->loader);
 		$template = $twig->load($this->templateName);
 		$i = 1;
+		$this->source->open();
 		foreach ($this->source as $data) {
 			$dataArray = $data->asArray();
 			$dataArray['_i'] = $i++;
 			$this->output->consume($template->render($dataArray), $dataArray);
 		}
+		$this->source->close();
 	}
 }
 ?>

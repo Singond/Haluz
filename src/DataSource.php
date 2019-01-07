@@ -8,5 +8,10 @@ use \Traversable;
  *
  * @author Singon
  */
-interface DataSource extends Traversable {}
+interface DataSource extends Traversable {
+
+	public function open();
+
+	public function close();
+}
 ?>

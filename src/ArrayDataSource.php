@@ -28,5 +28,10 @@ class ArrayDataSource implements IteratorAggregate, DataSource {
 	public function getIterator():Traversable {
 		return new ArrayIterator($this->data);
 	}
+
+	public function close() {}
+
+	public function open() {}
+
 }
 ?>

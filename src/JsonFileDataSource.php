@@ -5,14 +5,16 @@ use Symfony\Component\Console\Logger\ConsoleLogger;
 
 class JsonFileDataSource extends SingleEntryDataSource {
 
+	// TODO: Not implementing open() and close() is lying about the nature
+	// of this class. FileDataSource is appropriate here.
+
 	private $dataEntry;
-	private $logger;
 
 	public function __construct(string $filename) {
+		parent::__construct();
 		$contents = file_get_contents($filename);
 		$data = json_decode($contents, true);
 		$this->dataEntry = new ArrayDataEntry($data);
-		$this->logger = Log::getLogger();
 		$this->logger->debug("Parsed JSON data: $this->dataEntry");
 	}
 

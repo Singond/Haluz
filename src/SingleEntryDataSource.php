@@ -3,10 +3,15 @@ namespace Haluz;
 
 use Iterator;
 
-abstract class SingleEntryDataSource implements Iterator, DataSource {
+abstract class SingleEntryDataSource extends AbstractDataSource
+		implements Iterator, DataSource {
 
 	/** @var int $iter iteration is at the beginning */
 	private $valid = true;
+
+	public function __construct() {
+		parent::__construct();
+	}
 
 	/**
 	 * Returns the sole data entry in this data source.
