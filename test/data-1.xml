@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<name>Cygnus</name>
+	<abbreviation>Cyg</abbreviation>
+	<meaning>swan</meaning>
+	<hemisphere>northern</hemisphere>
+	<stars>
+		<bayer>alpha</bayer>
+		<name>Deneb</name>
+		<magnitude>1.25</magnitude>
+		<represents>tail</represents>
+		<note></note>
+	</stars>
+	<stars>
+		<bayer>beta</bayer>
+		<name>Albireo</name>
+		<magnitude>3.05</magnitude>
+		<represents>head</represents>
+		<note>double</note>
+	</stars>
+	<stars>
+		<bayer>gamma</bayer>
+		<name>Sadr</name>
+		<magnitude>2.23</magnitude>
+		<represents>body</represents>
+		<note></note>
+	</stars>
+	<stars>
+		<bayer>delta</bayer>
+		<name>Fawaris</name>
+		<magnitude>2.86</magnitude>
+		<represents>wing</represents>
+		<note>binary</note>
+	</stars>
+	<stars>
+		<bayer>epsilon</bayer>
+		<name>Aljanah</name>
+		<magnitude>2.48</magnitude>
+		<represents>wing</represents>
+		<note>multiple</note>
+	</stars>
+	<stars>
+		<bayer>eta</bayer>
+		<name></name>
+		<magnitude>3.89</magnitude>
+		<represents>neck</represents>
+		<note>multiple</note>
+	</stars>
+	The first five stars (Deneb, Albireo, Sadr, Fawaris and Aljanah) toghether
+	form a prominent asterism called the Northern Cross.
+</root>

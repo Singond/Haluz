@@ -30,6 +30,8 @@ class MainCommand extends Command {
 			"File with data to be filled, in JSON format");
 		$this->addOption('csv', null, InputOption::VALUE_REQUIRED,
 			"File with data to be filled, in CSV format");
+		$this->addOption('xml', null, InputOption::VALUE_REQUIRED,
+			"File with data to be filled, in XML format");
 
 		$this->addOption('multiple', 'm', InputOption::VALUE_NONE,
 			"Treat input as multiple data entries");
@@ -46,12 +48,16 @@ class MainCommand extends Command {
 		$logger->debug("Using template $templateName in $templateDir");
 		$logger->debug("The output file name pattern is $output");
 
+		// Prepare Twig engine
 		$loader = new Twig_Loader_Filesystem($templateDir);
 		$processor = new Processor();
 		$processor->setLoader($loader);
 		$processor->setTemplateName($templateName);
 
+		// Options
 		$multiple = $in->getOption('multiple');
+
+		// Input
 		if ($file = $in->getOption('json')) {
 			$processor->setDataSource(new JsonFileDataSource($file));
 		}
@@ -61,7 +67,11 @@ class MainCommand extends Command {
 			else
 				$processor->setDataSource(new CsvFileDataSource($file));
 		}
+		if ($file = $in->getOption('xml')) {
+			$processor->setDataSource(new XmlFileDataSource($file));
+		}
 
+		// Output
 		if (!empty($output)) {
 			$processor->setOutput(new FileOutput($output));
 		} else {
