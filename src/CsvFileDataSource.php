@@ -2,9 +2,7 @@
 namespace Haluz;
 
 class CsvFileDataSource extends AbstractDataSource {
-	use FileDataSource;
-
-	private $dataEntry;
+	use FileDataSource, CsvOptions;
 
 	public function __construct(string $filename) {
 		parent::__construct();
@@ -12,30 +10,55 @@ class CsvFileDataSource extends AbstractDataSource {
 	}
 
 	public function data(): iterable {
-		if ($this->dataEntry) {
-			return $this->dataEntry;
+		if (($header = $this->nextLine())) {
+			$this->logger->debug("Parsed header row");
 		} else {
-			$csv = $this->parse($this->filename, ",");
-			$header = $csv[0];
-			$values = $csv[1];
-			$data = array();
-			for ($i = 0; $i < count($header); $i++) {
-				$data[$header[$i]] = $values[$i];
+			throw new \Exception("The CSV file must contain at least two rows");
+		}
+		if (($values = $this->nextLine())) {
+			$this->logger->debug("Parsed first data row");
+			$data = $this->compose($header, $values);
+		} else {
+			throw new \Exception("The CSV file must contain at least two rows");
+		}
+		if (($values = $this->nextLine())) {
+			// Nest the array to allow for more lines
+			$this->logger->debug("Parsed second data row, wrapping array in another");
+			$data = array($data);
+			$data[] = $this->compose($header, $values);
+			while (($values = $this->nextLine())) {
+				$this->logger->debug("Parsed another data row");
+				$data[] = $this->compose($header, $values);
 			}
-			$this->dataEntry = new ArrayDataEntry($data);
-			$this->logger->debug("Parsed CSV data: $this->dataEntry");
-			yield $this->dataEntry;
+			$this->logger->debug("Reached end");
+		}
+		$this->logger->debug("Parsed data: " . json_encode($data, JSON_PRETTY_PRINT));
+		yield new ArrayDataEntry($data);
+	}
+
+	private function nextLine() {
+		if ($this->handle !== false) {
+			$this->logger->debug("Reading line");
+			return fgetcsv($this->handle, 0, $this->separator);
+		} else {
+			throw new \Exception("File not open");
 		}
 	}
 
-	private function parse(string $file, string $separator): array {
-		$rows = array();
-		if ($this->handle !== false) {
-			while (($rowdata = fgetcsv($this->handle, 0, $separator)) !== false) {
-				$rows[] = $rowdata;
-			}
+	/**
+	 * Creates an associative array mapping each cell in header to the
+	 * corresponding cell in the value row.
+	 *
+	 * @param array $header the header row
+	 * @param array $values the value row
+	 * @return array the composed associative array
+	 */
+	private function compose(array $header, array $values): array {
+		$data = array();
+		for ($i = 0; $i < count($header); $i++) {
+			$data[$header[$i]] = $values[$i];
 		}
-		return $rows;
+		return $data;
 	}
 
 }
