@@ -2,23 +2,11 @@
 namespace Haluz;
 
 class CsvFileMultiDataSource extends AbstractDataSource {
-	use FileDataSource;
-
-	private $header;
-	private $separator = ",";
+	use FileDataSource, CsvOptions;
 
 	public function __construct(string $filename) {
 		parent::__construct();
 		$this->filename = $filename;
-	}
-
-	/**
-	 * Sets the separator to be used for parsing the CSV data.
-	 *
-	 * @param string $separator
-	 */
-	public function setSeparator($separator) {
-		$this->separator = $separator;
 	}
 
 	private function nextLine() {
