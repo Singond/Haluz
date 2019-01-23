@@ -53,7 +53,7 @@ class XmlFileDataSource extends AbstractDataSource {
 		$childCount = $node->count();
 		if ($childCount == 0) {
 			// An empty node or a text node: return the contents
-			return $node->__toString();
+			return self::cleanUp($node->__toString());
 		} else {
 			// A node with children: return value for each child
 			$children = array();
@@ -71,16 +71,29 @@ class XmlFileDataSource extends AbstractDataSource {
 					$children[$name][] = $this->value($child);
 					$nameCounter[$name] += 1;
 				} else {
+					// More than one child of that name.
+					// It is already an array, just append to it.
 					$children[$name][] = $this->value($child);
 					$nameCounter[$name] += 1;   // Not necessary
 				}
 			}
-			// If there is any plain text, add id under a special key
+			// If there is any plain text, add it under a special key
 			if ($text = $node->__toString()) {
-				$children['_text'] = $text;
+				$children['_text'] = self::cleanUp($text);
 			}
 			return $children;
 		}
+	}
+
+	/**
+	 * Cleans up text obtained from the data file.
+	 * Merges white-space and removes line breaks.
+	 *
+	 * @param string $text the string to be modified
+	 * @return string the modified string
+	 */
+	private static function cleanUp(string $text): string {
+		return trim(preg_replace('/\s+/S', ' ', $text));
 	}
 }
 ?>
