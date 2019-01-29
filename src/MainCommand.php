@@ -35,6 +35,10 @@ class MainCommand extends Command {
 
 		$this->addOption('multiple', 'm', InputOption::VALUE_NONE,
 			"Treat input as multiple data entries");
+
+		// Syntax options
+		$this->addOption('delimiters', 'D', InputOption::VALUE_REQUIRED,
+			"Space-separated list of delimiters to be used in templates");
 	}
 
 	protected function execute(InputInterface $in, OutputInterface $out) {
@@ -56,6 +60,25 @@ class MainCommand extends Command {
 
 		// Options
 		$multiple = $in->getOption('multiple');
+		// Syntax options
+		if ($delims = $in->getOption('delimiters')) {
+			$logger->debug("Changing delimiters");
+			$delims = explode(' ', $delims);
+			// TODO: Display errors if bad syntax
+			$count = count($delims);
+			if ($count >= 2) {
+				$processor->setVariableDelimiters($delims[0], $delims[1]);
+			}
+			if ($count >= 4) {
+				$processor->setBlockDelimiters($delims[2], $delims[3]);
+			}
+			if ($count >= 6) {
+				$processor->setCommentDelimiters($delims[4], $delims[5]);
+			}
+			if ($count >= 8) {
+				$processor->setInterpolationDelimiters($delims[6], $delims[7]);
+			}
+		}
 
 		// Input
 		if ($file = $in->getOption('json')) {
