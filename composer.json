@@ -11,5 +11,8 @@
 		"psr-4": {
 			"Haluz\\": "src/"
 		}
-	}
+	},
+	"authors": [
+		{"name": "Singon (Jan Slaný)"}
+	]
 }
