@@ -25,7 +25,25 @@ Reads data from a JSON file. See [_Data sources_](#source-json) section below.
 ### `--csv`
 Reads data from a CSV file. See [_Data sources_](#source-csv) section below.
 
-Data sources
+### `--delimiters`, `-D`
+Change the delimiters to be recognized in the templates.
+This is a space-separated list of delimiter pairs, specifying (in order):
+the variable delimiters (by default `{{`, `}}`),
+the block delimiters (by default `{%`, `%}`),
+the comment delimiters (by default `{#`, `#}`)
+and the string interpolation delimiters (by default `#{`, `}`).
+It is possible to specify only the first, second, third or all four pairs.
+The omitted pairs will be set to their default values.
+
+For example, the following argument will set the variable delimiters to
+`/*{ variable }*/` and `/*% block %*/` (which may be useful, for example,
+in a Java source file, where the default braces would interfere with syntax):
+
+```
+--delimiters="/*{ }*/ /*% %*/"
+```
+
+Data Sources
 ------------
 
 ### JSON file (`--json`) {#source-json}
@@ -37,6 +55,5 @@ Cell values in subsequent rows are indexed with the corresponding value
 in the header.
 
 By default, the whole table is a considered a single data entry.
-
 If the `--multiple` option is given, each row of the CSV table is treated
 as a separate data entry.

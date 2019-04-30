@@ -1,0 +1,13 @@
+The constellation of /*{name}*/ lies in the /*{hemisphere}*/ hemisphere.
+It represents a /*{meaning}*/.
+
+Some of the brightest stars are the following /*{stars|length}*/:
+
+/*% for star in stars %*/
+- /*{star.bayer|capitalize}*/ /*{abbreviation}*//*% if star.name %*/, "/*{star.name}*/"/*% endif %*/:
+  Its apparent magnitude is /*{star.magnitude}*/; it represents the /*{star.represents}*/.
+/*% if star.note %*/
+  Note: /*{star.note}*/
+/*% endif %*/
+
+/*% endfor %*/
