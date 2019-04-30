@@ -5,4 +5,4 @@
 /.buildpath
 /.project
 /composer.lock
-/test/output*
+/tests/output*
