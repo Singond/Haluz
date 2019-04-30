@@ -1,5 +1,6 @@
 {
 	"name": "singon/haluz",
+	"description": "A command-line wrapper for the 'Twig' templating engine",
 	"require": {
 		"twig/twig": "~2.0",
 		"psr/log": "1.1.0",
