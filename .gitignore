@@ -5,3 +5,4 @@
 /.buildpath
 /.project
 /tests/output*
+*.md.backup

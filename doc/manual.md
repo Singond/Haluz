@@ -8,7 +8,7 @@ templating engine with a command-line interface.
 
 Requirements
 ============
-Haluz requires PHP >7.2? to run.
+Haluz requires PHP 7.2 or higher to run.
 
 Usage
 =====
