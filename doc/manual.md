@@ -28,6 +28,11 @@ Reads data from an XML file. See [_Data sources_](#source-xml) section below.
 ### `--csv`
 Reads data from a CSV file. See [_Data sources_](#source-csv) section below.
 
+### `--multiple`, `-m`
+Treat input as multiple data entries. This option changes how certain data
+sources are interpreted. The exact behaviour of this option depends on the
+data source used, see [_Data sources_](#source) section below.
+
 ### `--delimiters`, `-D`
 Change the delimiters to be recognized in the templates.
 This is a space-separated list of delimiter pairs, specifying (in order):
@@ -35,7 +40,7 @@ the variable delimiters (by default `{{`, `}}`),
 the block delimiters (by default `{%`, `%}`),
 the comment delimiters (by default `{#`, `#}`)
 and the string interpolation delimiters (by default `#{`, `}`).
-It is possible to specify only the first, second, third or all four pairs.
+It is possible to specify only the first one, two, three or all four pairs.
 The omitted pairs will be set to their default values.
 
 For example, the following argument will set the variable delimiters to
@@ -46,7 +51,7 @@ in a Java source file, where the default braces would interfere with syntax):
 --delimiters="/*{ }*/ /*% %*/"
 ```
 
-Data Sources
+Data Sources {#source}
 ------------
 
 ### JSON file (`--json`) {#source-json}
