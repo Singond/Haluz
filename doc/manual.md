@@ -22,6 +22,9 @@ Options
 ### `--json`
 Reads data from a JSON file. See [_Data sources_](#source-json) section below.
 
+### --xml
+Reads data from an XML file. See [_Data sources_](#source-xml) section below.
+
 ### `--csv`
 Reads data from a CSV file. See [_Data sources_](#source-csv) section below.
 
@@ -48,6 +51,14 @@ Data Sources
 
 ### JSON file (`--json`) {#source-json}
 Reads data from a JSON file.
+
+### XML file (`--xml`) {#source-xml}
+Reads data from an XML file. The values of XML nodes become Twig variables
+indexed by their corresponding node name.
+The name of the root element is ignored, nodes directly under root element
+become the top-level variables and their children become their attributes.
+If a node contains both child nodes and text, the text is available
+as a special attribute `_text`.
 
 ### CSV file (`--csv`) {#source-csv}
 Reads data from a CSV table. The first row is used as a header.
