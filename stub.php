@@ -1,5 +1,5 @@
 <?php
 Phar::mapPhar();
-require_once 'phar://haluz.phar/src/application.php';
+require_once 'phar://haluz.phar/src/run-phar.php';
 __HALT_COMPILER();
 ?>
