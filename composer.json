@@ -1,6 +1,7 @@
 {
 	"name": "singon/haluz",
 	"description": "A command-line wrapper for the 'Twig' templating engine",
+	"version": "0.1.0-alpha",
 	"type": "project",
 	"require": {
 		"php": "^7.2",
