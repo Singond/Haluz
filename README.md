@@ -37,7 +37,7 @@ You can also install Haluz as a standalone file.
 2) Link `haluz.phar` to your `PATH` and make it executable:
     ```
     chmod +x haluz.phar
-    ln -s haluz.phar <a folder in your $PATH>/haluz
+    ln -s haluz.phar <a_folder_in_your_$PATH>/haluz
     ```
 
 ### On Windows
@@ -54,7 +54,7 @@ Build {#build}
 Composer installs the project from its source obtained from the repository,
 therefore no build is needed for Composer.
 
-The following instructions apply you wish to make a standalone executable
+The following instructions apply if you wish to make a standalone executable
 PHP archive (phar).
 
 Requirements
